@@ -5,17 +5,9 @@ import java.util.Iterator;
 
 /**
  * A basic implementation of some methods in a singly linked list class.
- * @author Michael Langer 
- * @modified by Sayantan Datta
- * 
  * (Most of this code was adapted from textbooks 
  * e.g. by Frank Carrano,  Mark Allen Weiss, 
- *         Michael Goodrich and Roberto Tomassia)
- *         
- *  I put some Javadoc in this code, e.g.  @param, @return
- *  But I do not expect you to do so in this course 
- *  (and I generally don't do it when I am writing my own Java code)
- *  
+ *         Michael Goodrich and Roberto Tomassia)  
  */
 
 //  The "extends" (rather than "implements") in the generic type definition is a Java detail that you don't need to think about.

@@ -1,4 +1,4 @@
-package COMP250_Assignment2;
+package polynomials;
 
 import java.math.BigInteger;
 

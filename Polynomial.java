@@ -1,6 +1,4 @@
-package COMP250_Assignment2;
-
-//Name: Zhenzhou (Violet) Wei     ID: 260767913
+package polynomials;
 
 import java.math.BigInteger;
 
@@ -43,14 +41,11 @@ public class Polynomial
 	
 	/* 
 	 * Use the methods provided by the SLinkedList class. The runtime of this method should be 𝑂(𝑛).
-	 * TODO: Add new term to the polynomial. Worth 30 points.
 	 * Also ensure the polynomial is in decreasing order of exponent.
 	 */
 	public void addTerm(Term t)
 	{	
-		/**** ADD CODE HERE ****/
-		
-		// Hint: Notice that the function SLinkedList.get(index) method is O(n), 
+		// Notice that the function SLinkedList.get(index) method is O(n), 
 		// so if this method were to call the get(index) 
 		// method n times then the method would be O(n^2).
 		// Instead, use a Java enhanced for loop to iterate through 
@@ -78,8 +73,6 @@ public class Polynomial
 			    }
 			    else if(currentTerm.getExponent() == t.getExponent()){
 			    	if(currentTerm.getCoefficient().add(t.getCoefficient()).equals(BigInteger.valueOf(0))) {
-			    		//BigInteger new_coe = new BigInteger("currentTerm.getCoefficient().add(t.getCoefficient())");
-			    	    //t.setCoefficient(new_coe);
 			    	   this.polynomial.remove(index);
 			    	   return;   
 			    	}
@@ -93,10 +86,6 @@ public class Polynomial
 			this.polynomial.addLast(t);
 		}
 		return;
-		
-		/*if(polynomial.isEmpty()) {  //case when the list is empty
-			polynomial.addFirst(t);	
-		}*/
 				
 	}
 	
@@ -106,15 +95,13 @@ public class Polynomial
 	}
 	
 	
-	/* This method worth 10 points
-	 * The add() method is a static method that adds two polynomials and returns a new polynomial as result. 
+	/* The add() method is a static method that adds two polynomials and returns a new polynomial as result. 
 	 * You may use any of the class methods. Be careful not to modify either of the two polynomials. 
 	 * The runtime of this method should be 𝑂(𝑛1 + 𝑛2) where 𝑛1, 𝑛2 are the number of terms in the two polynomials being added.
 	 */
 	//TODO: Add two polynomial without modifying either
 	public static Polynomial add(Polynomial p1, Polynomial p2)
 	{
-		/**** ADD CODE HERE ****/
 		Polynomial new_poly = new Polynomial();
 		
 		Polynomial newP1 = p1.deepClone();  //clone polynomial using deepClone() 
@@ -160,113 +147,17 @@ public class Polynomial
 			}
 		}
 		return new_poly;
-		
-		/*if(n1 == 0 && n2 == 0) {
-			return null;
-		}
-		
-		if(n1 == 0) {
-			Polynomial newP2 = p2.deepClone();
-			return newP2;
-		}
-		if(n2 == 0){
-			Polynomial newP1 = p1.deepClone();
-			return newP1;
-		}
-		
-		
-		for(int i = 0; i < n2; i++) {
-			Term newP2term = p2.getTerm(i);
-			newP1.addTerm(newP2term);
-		}
-		return newP1;*/
-
-		
-		/*for(int i=0; i<n1; i++) {
-			int index=0;
-			int p1_exp = p1.getTerm(i).getExponent();
-			for(int j=0; j<n2; j++) {
-				if(p1_exp == p2.getTerm(j).getExponent()) {
-					BigInteger new_coe = p1.getTerm(i).getCoefficient().add(p2.getTerm(j).getCoefficient());
-					Term add_term = new Term(p1_exp, new_coe);
-					new_poly.addTerm(add_term);
-					break;
-				}else {
-					index++;
-				}
-			}
-			if(index==n2) {
-				new_poly.addTerm(p1.getTerm(i));
-			}	
-		}
-		
-		for(int j=0; j<n2; j++) {
-			
-			int p2_exp = p2.getTerm(j).getExponent();
-			for(int i=0; i<n1; i++) {
-				if(p2_exp == p1.getTerm(i).getExponent()) {
-					break;
-				}else {
-					new_poly.addTerm(p2.getTerm(j));
-				}
-			}
-		}
-		
-		return new_poly;*/
-		
-		/*if(n1 == n2) { //case when the two polynomial's size is same
-			
-			for(int i=0; i < n1; i++) {
-			    BigInteger p1_coeff = p1.getTerm(i).getCoefficient();
-				BigInteger p2_coeff = p2.getTerm(i).getCoefficient();
-				BigInteger new_coeff = p1_coeff.add(p2_coeff);
-				Term new_term = new Term(p1.getTerm(i).getExponent(), new_coeff);
-				new_poly.addTerm(new_term);
-			}
-			return new_poly;
-			
-		}else if(n1 > n2) {
-			
-			int j=0;
-			for(j=0; j< n1-n2; j++) {
-				new_poly.addTerm(p1.getTerm(j));
-			}
-			for(int i=0; i < n2; i++) {
-			    BigInteger p1_coeff = p1.getTerm(i+j).getCoefficient();
-				BigInteger p2_coeff = p2.getTerm(i).getCoefficient();
-				BigInteger new_coeff = p1_coeff.add(p2_coeff);
-				Term new_term = new Term(p2.getTerm(i).getExponent(), new_coeff);
-				new_poly.addTerm(new_term);
-			}
-			return new_poly;
-			
-		}else {  //case when the size of p2 is larger than p1
-			int z=0;
-			for(z=0; z< n2-n1; z++) {
-				new_poly.addTerm(p2.getTerm(z));
-			}
-			for(int i=0; i < n2; i++) {
-			    BigInteger p1_coeff = p1.getTerm(i).getCoefficient();
-				BigInteger p2_coeff = p2.getTerm(i+z).getCoefficient();
-				BigInteger new_coeff = p1_coeff.add(p2_coeff);
-				Term new_term = new Term(p1.getTerm(i).getExponent(), new_coeff);
-				new_poly.addTerm(new_term);
-			}
-			return new_poly;
-		}*/
 			
 		
 	}
 	
-	/* The multiplyTerm() method worth 15 points.
-	 * This is a private helper method used by the multiply function. 
+	/* This is a private helper method used by the multiply function. 
 	 * The polynomial object multiplies each of its terms by an argument term and updates itself. 
 	 * The runtime of this method should be 𝑂(𝑛).
 	 */
 	//TODO: multiply this polynomial by a given term.
 	private void multiplyTerm(Term t)
 	{	
-		/**** ADD CODE HERE ****/
 		int exp = t.getExponent();
 		BigInteger biginteger = t.getCoefficient();
 		
@@ -277,10 +168,10 @@ public class Polynomial
 		
 	}
 	
-	/* The multiply() method worth 10 points.
+	/*
 	 * This is a static method that multiply two polynomials and returns a new polynomial as result. 
 	 * Careful not to modify either of the two polynomials. 
-	 * We recommend you use Polynomial.multiplyTerm, Polynomial.add and any other helper methods that you need. 
+	 * recommend use Polynomial.multiplyTerm, Polynomial.add and any other helper methods that you need. 
 	 * The runtime of this method should be 𝑂(𝑛1𝑛2) where 𝑛1, 𝑛2 are the number of terms in the two polynomials being multiplied.
 	 */
 	//TODO: multiply two polynomials
@@ -302,19 +193,14 @@ public class Polynomial
 			result=add(result, newP1);
 			newP1  = p1.deepClone();
 		}
-		/*Polynomial result = new Polynomial();
 		
-		for(int i =0; i<p1.size(); i++) {
-			p2.multiplyTerm(p1.getTerm(i));
-			result=add(result, p2);
-		}*/
 		return result;
 		
 		
 		
 	}
 	
-	/* The eval() method worth 20 points.
+	/* 
 	 * The polynomial object evaluates itself for a given value of 𝑥 using Horner’s method. 
 	 * The variable 𝑥 is of BigInteger data type, as mentioned earlier. 
 	 * Horner’s method greatly speeds up the evaluation for exponents with many terms. 
@@ -324,9 +210,8 @@ public class Polynomial
 	 */
 	
 	//TODO: evaluate this polynomial.
-	// Hint:  The time complexity of eval() must be order O(m), 
-	// where m is the largest degree of the polynomial. Notice 
-	// that the function SLinkedList.get(index) method is O(m), 
+	// The time complexity of eval() must be order O(m), where m is the largest degree of the polynomial. 
+	// Notice that the function SLinkedList.get(index) method is O(m), 
 	// so if your eval() method were to call the get(index) 
 	// method m times then your eval method would be O(m^2).
 	// Instead, use a Java enhanced for loop to iterate through 
@@ -343,7 +228,6 @@ public class Polynomial
 
 	public BigInteger eval(BigInteger x)
 	{
-		/**** ADD CODE HERE ****/
 		BigInteger final_bigint = new BigInteger("0");
 		
 		if(polynomial.size() == 0) {
@@ -427,34 +311,11 @@ public class Polynomial
 			    return final_bigint;
 		}	
 		
-		/*if(polynomial.size() == 0) {
-			return final_bigint;
-			
-		}else{ //case when the polynomial list in not empty
-			
-			if(polynomial.size() == 1) {  //case when only a constant exist in the polynomial 
-				for(Term currentTerm : polynomial) {
-					final_bigint = currentTerm.getCoefficient();	
-				}
-				return final_bigint;
-				
-			}else {
-				
-				//case when the exponent is equal or greater than 1
-			    for(Term currentTerm : polynomial) {
-			    	
-				    final_bigint = final_bigint.add(currentTerm.getCoefficient());
-				    final_bigint = final_bigint.multiply(x);
-			    }
-			    final_bigint = final_bigint.divide(x);
-			    return final_bigint;
-			}	
-		}*/
 	}
 	
 	// Checks if this polynomial is same as the polynomial in the argument
 	// Used for testing whether two polynomials have same content but occupy disjoint space in memory.
-    // Do not change this code, doing so may result in incorrect grades.
+    
 	public boolean checkEqual(Polynomial p)
 	{	
 		// Test for null pointer exceptions!!
@@ -480,15 +341,13 @@ public class Polynomial
 	}
 	
 	// This method blindly adds a term to the end of LinkedList polynomial. 
-	// Avoid using this method in your implementation as it is only used for testing.
-	// Do not change this code, doing so may result in incorrect grades.
+	// Avoid using this method in your implementation as it is only used 
 	public void addTermLast(Term t)
 	{	
 		polynomial.addLast(t);
 	}
 	
 	// This is used for testing multiplyTerm
-	// Do not change this code, doing so may result in incorrect grades.
 	public void multiplyTermTest(Term t)
 	{
 		multiplyTerm(t);

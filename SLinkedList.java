@@ -1,6 +1,4 @@
-package COMP250_Assignment2;
-
-//Name: Zhenzhou (Violet) Wei
+package polynomials;
 
 import java.lang.Iterable;
 import java.util.Iterator;
@@ -224,14 +222,13 @@ public class SLinkedList<E extends DeepClone<E>> implements Iterable<E>
 		return size;
 	}
 	
-	/* Write a deepClone() method which returns a deep copy of the linked list object.  Worth 15 points.
+	/* Write a deepClone() method which returns a deep copy of the linked list object.
 	 * It should step through the linked list and make a copy of each term. The runtime of this method should be 𝑂(𝑛).
  	 *  TODO: Makes a deep copy of the this linked list.
- 	 *  Hint: Use E.deepCopy().
+ 	 *  Use E.deepCopy().
  	 */
  	public SLinkedList<E> deepClone()
  	{
- 		/**** ADD CODE HERE ****/
  		// A deep copy means actually creating a new List and copying over the values.
  		
  		if(this.isEmpty()) {
